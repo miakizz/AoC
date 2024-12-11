@@ -20,11 +20,14 @@ today = ["chrono"]
 test_lib = []
 
 [dependencies]
+array2d = "0.3.2"
+cartesian = "0.2.1"
 
 # Template dependencies
 chrono = { version = "0.4.38", optional = true }
 dhat = { version = "0.3.3", optional = true }
 diagonal = "0.1.0"
+itertools = "0.13.0"
 pico-args = "0.5.0"
 regex = "1.11.1"
 tinyjson = "2.5.1"
