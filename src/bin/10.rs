@@ -5,13 +5,11 @@ use std::collections::HashSet;
 advent_of_code::solution!(10);
 
 pub fn part_one(input: &str) -> Option<u32> {
-    let side_len = (input.len() as f64).sqrt() as usize;    
-    let map_iter = input
-        .lines()
-        .flat_map(|x| x.chars().map(|x| x.to_digit(10).unwrap()));
+    let side_len = (input.len() as f64).sqrt() as usize;
+    let map_iter = input.chars().filter_map(|x| x.to_digit(10));
     let map = Array2D::from_iter_row_major(map_iter, side_len, side_len).unwrap();
     Some(
-        cartesian!(0..map.row_len(), 0..map.column_len())
+        cartesian!(0..side_len, 0..side_len)
             .map(|pos| {
                 let mut dest: HashSet<(usize, usize)> = HashSet::new();
                 visit_one(&map, &mut dest, -1, pos);
@@ -23,12 +21,10 @@ pub fn part_one(input: &str) -> Option<u32> {
 
 pub fn part_two(input: &str) -> Option<u32> {
     let side_len = (input.len() as f64).sqrt() as usize;
-    let map_iter = input
-        .lines()
-        .flat_map(|x| x.chars().map(|x| x.to_digit(10).unwrap()));
+    let map_iter = input.chars().filter_map(|x| x.to_digit(10));
     let map = Array2D::from_iter_row_major(map_iter, side_len, side_len).unwrap();
     Some(
-        cartesian!(0..map.row_len(), 0..map.column_len())
+        cartesian!(0..side_len, 0..side_len)
             .map(|pos| {
                 let mut dest: HashSet<Vec<(usize, usize)>> = HashSet::new();
                 visit_two(&map, &mut dest, vec![], -1, pos);
